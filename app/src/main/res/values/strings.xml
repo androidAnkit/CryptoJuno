@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">JunoAssessment</string>
+    <string name="empty_state">Empty State</string>
+    <string name="value_state">Value State</string>
+    <string name="deposit">Deposit</string>
+    <string name="buy">Buy</string>
+    <string name="your_crypto_holdings"><b>Your Crypto Holdings</b></string>
+    <string name="recent_transaction"><b>Recent Transactions</b></string>
+    <string name="view_all"><b>View all</b></string>
+    <string name="current_prices"><b>Current Prices</b></string>
+    <string name="gain_number"><b>7.22%</b></string>
+    <string name="time"><b>24h</b></string>
+</resources>
