@@ -1,29 +1,28 @@
 package com.example.junoassessment.presentation.activity
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.junoassessment.R
 import com.example.junoassessment.data.util.Resource
-import com.example.junoassessment.databinding.ActivityEmptyStateBinding
+import com.example.junoassessment.databinding.ActivityValueStateBinding
 import com.example.junoassessment.presentation.adapter.CryptoHoldingAdapter
 import com.example.junoassessment.presentation.adapter.CryptoPriceAdapter
 import com.example.junoassessment.presentation.adapter.TransactionAdapter
-import com.example.junoassessment.presentation.viewModel.EmptyStateViewModel
-import com.example.junoassessment.presentation.viewModel.EmptyStateViewModelFactory
+import com.example.junoassessment.presentation.viewModel.ValueStateViewModel
+import com.example.junoassessment.presentation.viewModel.ValueStateViewModelFactory
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class EmptyStateActivity : AppCompatActivity() {
+class ValueStateActivity : AppCompatActivity() {
 
     @Inject
-    lateinit var emptyStateViewModelFactory: EmptyStateViewModelFactory
+    lateinit var valueStateViewModelFactory: ValueStateViewModelFactory
 
     @Inject
     lateinit var cryptoHoldingAdapter: CryptoHoldingAdapter
@@ -34,18 +33,17 @@ class EmptyStateActivity : AppCompatActivity() {
     @Inject
     lateinit var transactionAdapter: TransactionAdapter
 
-    lateinit var binding: ActivityEmptyStateBinding
-    lateinit var emptyViewModel: EmptyStateViewModel
+    lateinit var valueStateViewModel: ValueStateViewModel
     private var isLoading = false
-
+    lateinit var binding: ActivityValueStateBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityEmptyStateBinding.inflate(layoutInflater)
+        binding = ActivityValueStateBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        emptyViewModel = ViewModelProvider(this, emptyStateViewModelFactory)
-            .get(EmptyStateViewModel::class.java)
+        valueStateViewModel = ViewModelProvider(this, valueStateViewModelFactory)
+            .get(ValueStateViewModel::class.java)
 
         // Setting the list on your crypto holding adapter
         initCHRecyclerView()
@@ -55,30 +53,28 @@ class EmptyStateActivity : AppCompatActivity() {
         initCPRecyclerView()
 
         // View your crypto holdings
-        viewEmptyStateData()
+        viewValueStateData()
 
     }
 
-    fun viewEmptyStateData() {
-        emptyViewModel.getEmptyUseCaseData()
+    fun viewValueStateData() {
+        valueStateViewModel.getValueUseCaseData()
 
-        emptyViewModel.emptyStateData.observe(this, Observer {
+        valueStateViewModel.valueStateData.observe(this, Observer {
             when (it) {
                 is Resource.Success -> {
                     hideProgressBar()
                     it.data?.let {
+                        // Updating the CryptoHolding List
                         cryptoHoldingAdapter.differ.submitList(it?.yourCryptoHoldings.toList())
+                        // Updating the Transaction List
                         transactionAdapter.differ.submitList(it?.allTransactions.toList())
+                        // Updating the Price List
                         cryptoPriceAdapter.differ.submitList(it?.cryptoPrices.toList())
-                        if (transactionAdapter.differ.currentList.isEmpty()) {
-                            binding.rvRecentTransactions.visibility = View.INVISIBLE
-                            binding.noData.visibility = View.VISIBLE
-                        }else{
-                            binding.noData.visibility = View.INVISIBLE
-                            binding.rvRecentTransactions.visibility = View.VISIBLE
-                        }
-                        binding.cryptoAccount.text = it.cryptoBalance.title
-                        binding.cryptoSH.text = it.cryptoBalance.subtitle
+                        binding.cryptoValueAccount.text = it.cryptoBalance.title
+                        binding.cryptoValueSH.text = it.cryptoBalance.subtitle
+                        binding.cryptoValuePrice.text = resources.getString(R.string.dollar) +
+                                it.cryptoBalance.currentBalInUsd
                     }
                 }
                 is Resource.Loading -> {
@@ -94,48 +90,42 @@ class EmptyStateActivity : AppCompatActivity() {
                     ).show()
                 }
 
-                else -> {
-                    Log.i("MYTAG", "Inside else condition")
+                else ->
                     finishAndRemoveTask()
-                }
-
             }
         })
     }
 
     fun initCHRecyclerView() {
-        binding.rvCryptoHoldings.apply {
+        binding.rvValueCryptoHoldings.apply {
             adapter = cryptoHoldingAdapter
-            layoutManager = LinearLayoutManager(this@EmptyStateActivity)
+            layoutManager = LinearLayoutManager(this@ValueStateActivity)
         }
     }
 
     fun initTRecyclerView() {
-        binding.rvRecentTransactions.apply {
+        binding.rvValueRecentTransactions.apply {
             adapter = transactionAdapter
-            layoutManager = LinearLayoutManager(this@EmptyStateActivity)
+            layoutManager = LinearLayoutManager(this@ValueStateActivity)
         }
     }
 
     fun initCPRecyclerView() {
-        binding.rvCostPrice.apply {
+        binding.rvValueCostPrice.apply {
             adapter = cryptoPriceAdapter
-            layoutManager = LinearLayoutManager(
-                this@EmptyStateActivity,
-                LinearLayoutManager.HORIZONTAL,
-                false
-            )
+            layoutManager =
+                LinearLayoutManager(this@ValueStateActivity, LinearLayoutManager.HORIZONTAL, false)
         }
     }
 
     private fun showProgressBar() {
         isLoading = true
-        binding.progressBar.visibility = View.VISIBLE
+        binding.progressValueBar.visibility = View.VISIBLE
     }
 
     private fun hideProgressBar() {
         isLoading = false
-        binding.progressBar.visibility = View.INVISIBLE
+        binding.progressValueBar.visibility = View.INVISIBLE
     }
 
     override fun onBackPressed() {
@@ -149,5 +139,4 @@ class EmptyStateActivity : AppCompatActivity() {
         cryptoPriceAdapter.differ.submitList(null)
         cryptoHoldingAdapter.differ.submitList(null)
     }
-
 }

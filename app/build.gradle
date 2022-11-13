@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
@@ -22,7 +24,7 @@ android {
                 ]
             }
         }
-        buildConfigField("String","BASE_URL","http://demo9414936.mockable.io/")
+        buildConfigField("String","BASE_URL","\"http://demo9414936.mockable.io/\"")
     }
 
     buildTypes {
@@ -71,4 +73,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
     // Glide To Vector You lib
     implementation 'com.github.corouteam:GlideToVectorYou:v2.0.0'
+    // Dagger Hilt
+    implementation "com.google.dagger:hilt-android:2.44"
+    kapt "com.google.dagger:hilt-compiler:2.44"
 }

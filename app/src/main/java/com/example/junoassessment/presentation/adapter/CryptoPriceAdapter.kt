@@ -1,5 +1,6 @@
 package com.example.junoassessment.presentation.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -8,11 +9,10 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.junoassessment.R
-import com.example.junoassessment.data.Constants
+import com.example.junoassessment.data.util.Constants
 import com.example.junoassessment.data.model.CryptoPrice
-import com.example.junoassessment.data.model.YourCryptoHolding
-import com.example.junoassessment.databinding.AllTransactionListBinding
 import com.example.junoassessment.databinding.CurrentPricesListBinding
+import com.example.junoassessment.presentation.activity.BuyActivity
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 
 class CryptoPriceAdapter : RecyclerView.Adapter<CryptoPriceAdapter.CryptoPriceViewHolder>() {
@@ -51,9 +51,12 @@ class CryptoPriceAdapter : RecyclerView.Adapter<CryptoPriceAdapter.CryptoPriceVi
         val binding: CurrentPricesListBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(cryptoPrice: CryptoPrice) {
-
+            binding.buy.setOnClickListener {
+                val buyIntent = Intent(binding.buy.context, BuyActivity::class.java)
+                binding.buy.context.startActivity(buyIntent)
+            }
             binding.cryptoName.text = cryptoPrice.title
-            binding.cryptoPrice.text = cryptoPrice.currentPriceInUsd
+            binding.cryptoPrice.text =  binding.cryptoPrice.context.resources.getString(R.string.dollar) + cryptoPrice.currentPriceInUsd
             GlideToVectorYou
                 .init()
                 .with(binding.cpLogo.context)

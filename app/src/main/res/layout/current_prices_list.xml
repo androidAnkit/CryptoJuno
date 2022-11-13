@@ -6,37 +6,13 @@
     android:layout_height="wrap_content"
     android:layout_marginEnd="15dp">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/download"
-        android:layout_width="50dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="5dp"
-        android:background="@drawable/cp_bac"
-        android:padding="10dp"
-        app:layout_constraintEnd_toStartOf="@+id/buy"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_download_icon"
-        app:tint="@color/purple_700" />
-
-    <TextView
-        android:id="@+id/buy"
-        android:layout_width="80dp"
-        android:layout_height="40dp"
-        android:background="@drawable/cp_bac"
-        android:gravity="center"
-        android:text="@string/buy"
-        android:textColor="@color/purple_700"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:paddingStart="10dp"
         android:background="@drawable/main_bac"
+        android:paddingStart="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -69,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:hint="Bitcoin"
-            android:textSize="26dp"
+            android:textSize="20dp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cpLogo" />
@@ -81,7 +57,7 @@
             android:layout_marginTop="10dp"
             android:hint="$33,042.34"
             android:textColor="@color/black"
-            android:textSize="30dp"
+            android:textSize="24dp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cryptoName" />
@@ -127,6 +103,41 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/download"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/cp_bac"
+            android:padding="10dp"
+            app:layout_constraintEnd_toStartOf="@+id/buy"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_download_icon"
+            app:tint="@color/purple_700" />
+
+        <TextView
+            android:id="@+id/buy"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:background="@drawable/cp_bac"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="@string/buy"
+            android:textColor="@color/purple_700"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

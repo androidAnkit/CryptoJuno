@@ -2,6 +2,7 @@ package com.example.junoassessment.data.model
 
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class AllTransaction(
     @SerializedName("title")
@@ -14,4 +15,4 @@ data class AllTransaction(
     val txnSubAmount: String?,
     @SerializedName("txn_time")
     val txnTime: String?
-)
+): Serializable

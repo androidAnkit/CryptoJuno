@@ -1,11 +1,14 @@
 package com.example.junoassessment.presentation.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.junoassessment.R
 import com.example.junoassessment.data.model.AllTransaction
 import com.example.junoassessment.databinding.AllTransactionListBinding
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
@@ -51,18 +54,16 @@ class TransactionAdapter : RecyclerView.Adapter<TransactionAdapter.TransactionVi
         val binding: AllTransactionListBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(allTransaction: AllTransaction) {
-            if(allTransaction!=null){
-                binding.firstFieldNearImg.text = allTransaction.title
-                binding.secFieldNearImage.text = allTransaction.txnTime
-                binding.firstFieldNearEnd.text = allTransaction.txnAmount
-                binding.secFieldNearEnd.text = allTransaction.txnSubAmount
-                GlideToVectorYou
-                    .init()
-                    .with(binding.cryptoImg.context)
-                    .load(allTransaction.txnLogo?.toUri(), binding.cryptoImg)
-            }else{
-                TODO("Need to add the update check")
-            }
+            binding.allTransactionLayout.visibility = View.VISIBLE
+            binding.firstFieldNearImg.text = allTransaction.title
+            binding.secFieldNearImage.text = allTransaction.txnTime
+            binding.firstFieldNearEnd.text =
+                binding.firstFieldNearEnd.context.resources.getString(R.string.dollar) + allTransaction.txnAmount
+            binding.secFieldNearEnd.text = allTransaction.txnSubAmount
+            GlideToVectorYou
+                .init()
+                .with(binding.cryptoImg.context)
+                .load(allTransaction.txnLogo?.toUri(), binding.cryptoImg)
         }
     }
 }

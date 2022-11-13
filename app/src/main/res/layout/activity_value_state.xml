@@ -6,14 +6,16 @@
     android:layout_height="match_parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
+    app:layout_constraintTop_toTopOf="parent"
+    tools:context=".presentation.activity.ValueStateActivity">
+
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/progressValueBar"
         style="?android:attr/progressBarStyle"
-        android:visibility="invisible"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:visibility="invisible" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -26,11 +28,10 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            tools:context=".EmptyStateActivity">
+            android:layout_marginBottom="20dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cryptoAccountLayout"
+                android:id="@+id/cryptoValueAccountLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -46,7 +47,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/cryptoLogo"
+                    android:id="@+id/cryptoValueLogo"
                     android:layout_width="50dp"
                     android:layout_height="52dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -55,16 +56,16 @@
                     app:srcCompat="@drawable/ic_btc_eth" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/cryptoNQLayout"
+                    android:id="@+id/cryptoValueNQLayout"
                     android:layout_width="150dp"
                     android:layout_height="52dp"
                     android:layout_marginStart="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/cryptoLogo"
+                    app:layout_constraintStart_toEndOf="@+id/cryptoValueLogo"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
-                        android:id="@+id/cryptoAccount"
+                        android:id="@+id/cryptoValueAccount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
@@ -76,7 +77,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/cryptoSH"
+                        android:id="@+id/cryptoValueSH"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
@@ -84,39 +85,70 @@
                         android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/cryptoAccount" />
+                        app:layout_constraintTop_toBottomOf="@+id/cryptoValueAccount" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <Button
-                    android:id="@+id/deposit_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
-                    android:background="@drawable/button_bac"
-                    android:insetTop="0dp"
-                    android:textSize="12sp"
-                    android:insetBottom="0dp"
-                    android:text="@string/deposit"
-                    android:textAllCaps="false"
-                    android:textColor="@color/purple_500"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cryptoValuePGLayout"
+                    android:layout_width="150dp"
+                    android:layout_height="52dp"
+                    android:layout_marginEnd="15dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/cryptoTrendingUp"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="2dp"
+                        app:layout_constraintEnd_toStartOf="@+id/cryptoValueGain"
+                        app:layout_constraintTop_toBottomOf="@+id/cryptoValuePrice"
+                        app:srcCompat="@drawable/ic_trending_up" />
+
+                    <TextView
+                        android:id="@+id/cryptoValuePrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:hint="$16862.22"
+                        android:gravity="end"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cryptoValueGain"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:textColor="@color/green"
+                        android:text="@string/chGains"
+                        android:gravity="end"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cryptoValuePrice" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <View
-                android:id="@+id/chLine"
+                android:id="@+id/chValueLine"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="25dp"
                 android:background="@color/grey"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cryptoAccountLayout" />
+                app:layout_constraintTop_toBottomOf="@+id/cryptoValueAccountLayout" />
 
             <TextView
-                android:id="@+id/headingYCH"
+                android:id="@+id/headingValueYCH"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -125,10 +157,10 @@
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/chLine" />
+                app:layout_constraintTop_toBottomOf="@+id/chValueLine" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvCryptoHoldings"
+                android:id="@+id/rvValueCryptoHoldings"
                 android:layout_width="0dp"
                 android:layout_height="330dp"
                 android:layout_marginStart="20dp"
@@ -137,21 +169,21 @@
                 android:background="@drawable/main_bac"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/headingYCH"
+                app:layout_constraintTop_toBottomOf="@+id/headingValueYCH"
                 tools:listitem="@layout/crypto_holdings_list" />
 
             <View
-                android:id="@+id/rtLine"
+                android:id="@+id/rtValueLine"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="25dp"
                 android:background="@color/grey"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rvCryptoHoldings" />
+                app:layout_constraintTop_toBottomOf="@+id/rvValueCryptoHoldings" />
 
             <TextView
-                android:id="@+id/headingRT"
+                android:id="@+id/headingValueRT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -160,10 +192,10 @@
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rtLine" />
+                app:layout_constraintTop_toBottomOf="@+id/rtValueLine" />
 
             <TextView
-                android:id="@+id/viewAll"
+                android:id="@+id/viewAllValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -172,55 +204,32 @@
                 android:textColor="@color/purple_700"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rtLine" />
+                app:layout_constraintTop_toBottomOf="@+id/rtValueLine" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/transactionLayout"
-                android:layout_width="match_parent"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvValueRecentTransactions"
+                android:layout_width="0dp"
                 android:layout_height="200dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="25dp"
                 android:layout_marginEnd="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/headingRT">
+                app:layout_constraintTop_toBottomOf="@+id/headingValueRT"
+                tools:listitem="@layout/all_transaction_list" />
 
-                <TextView
-                    android:id="@+id/noData"
-                    android:layout_width="0dp"
-                    android:layout_height="200dp"
-                    android:gravity="center"
-                    android:text="@string/no_data"
-                    android:textColor="@color/grey"
-                    android:textSize="20sp"
-                    android:visibility="invisible"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/rvRecentTransactions"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvRecentTransactions"
-                    android:layout_width="0dp"
-                    android:layout_height="200dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:listitem="@layout/all_transaction_list" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
             <View
-                android:id="@+id/cpLine"
+                android:id="@+id/cpValueLine"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="10dp"
                 android:background="@color/grey"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/transactionLayout" />
+                app:layout_constraintTop_toBottomOf="@+id/rvValueRecentTransactions" />
 
             <TextView
-                android:id="@+id/headingCP"
+                android:id="@+id/headingValueCP"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -229,10 +238,10 @@
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cpLine" />
+                app:layout_constraintTop_toBottomOf="@+id/cpValueLine" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvCostPrice"
+                android:id="@+id/rvValueCostPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -240,18 +249,18 @@
                 android:orientation="horizontal"
                 android:scrollbars="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/headingCP"
+                app:layout_constraintTop_toBottomOf="@+id/headingValueCP"
                 tools:listitem="@layout/current_prices_list" />
 
             <View
-                android:id="@+id/bottomLine"
+                android:id="@+id/bottomValueLine"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="20dp"
                 android:background="@color/grey"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rvCostPrice" />
+                app:layout_constraintTop_toBottomOf="@+id/rvValueCostPrice" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

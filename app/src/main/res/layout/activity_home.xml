@@ -6,33 +6,46 @@
     android:layout_height="match_parent"
     tools:context=".presentation.activity.HomeActivity">
 
+
+    <ImageView
+        android:id="@+id/mix_coins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3"
+        app:srcCompat="@drawable/ic_btc_eth" />
+
     <Button
         android:id="@+id/emptyState"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/button_bac"
         android:gravity="center"
         android:text="@string/empty_state"
         android:textAllCaps="false"
         android:textColor="@color/purple_500"
-        android:background="@drawable/button_bac"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.32" />
+        app:layout_constraintTop_toBottomOf="@+id/mix_coins" />
 
     <Button
         android:id="@+id/valueState"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:insetTop="0dp"
         android:insetBottom="0dp"
         android:text="@string/value_state"
         android:textAllCaps="false"
         app:cornerRadius="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emptyState" />
+        app:layout_constraintTop_toBottomOf="@+id/mix_coins" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,7 @@ package com.example.junoassessment.data.model
 
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class YourCryptoHolding(
     @SerializedName("current_bal_in_token")
@@ -12,4 +13,4 @@ data class YourCryptoHolding(
     val logo: String?,
     @SerializedName("title")
     val title: String?
-)
+):Serializable
